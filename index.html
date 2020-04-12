@@ -28,7 +28,6 @@
   </title>
 </head>
 
-
 <body ng-app="newMusicSearch">
   <nav class="navbar navbar-default">
     <div class="container">
@@ -37,7 +36,7 @@
       </div>
     </div>
   </nav>
-  <div class="container" ng-controller="newReleases">
+  <div class="container" ng-controller="newReleases" ng-init="checkAuthentication()">
 
     <div class="row searchbar">
       <div class="col-lg-12 col-md-12 col-sm-12">
