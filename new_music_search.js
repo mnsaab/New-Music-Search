@@ -5,7 +5,7 @@ app.controller('newReleases', ['$scope', '$http', '$location', '$window',
 function ($scope, $http, $location, $window) {
 	
 	$scope.checkAuthentication = function() {
-		let params = $location.hash().split('&');
+		let params = $location.url().split('&');
 		$scope.token = null;
 		for (let i=0; i < params.length; ++i){
 			if (params[i].includes("access_token")) {
