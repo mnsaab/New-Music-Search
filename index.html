@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-US">
 
+<style>
+  #releaseInput {
+    width: 50px;
+  }
+</style>
+
 <head>
   <title> New Music Search</title>
   <!-- bootstrap CSS -->
@@ -38,11 +44,26 @@
   </nav>
   <div class="container" ng-controller="newReleases" ng-init="checkAuthentication()">
 
-    <div class="row searchbar">
-      <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="searchbar">
+      
+      <label for="releaseInput">
         <h4>Enter the number of results you'd like to receive: </h4>
-        <input type="text" ng-model="inputValue" ng-keyup="searchSpotify($event)" ng-init="total=0" ng-init="data">
+      </label>
+      <div class="row">
+        <div class="col-sm-3">
+          <select id="releaseInput" ng-model="numberOfResults">
+            <option value="">---</option>
+            <option ng-repeat="i in [].constructor(number) track by $index" value="{{$index + 1}}">{{$index + 1}}</option>
+          </select>
+        </div>
       </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <input type="submit" ng-click="getReleases()" ng-init="total=0" ng-init="data" value="Search">
+        </div>
+      </div>
+
     </div>
 
   </div>
