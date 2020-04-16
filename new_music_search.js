@@ -19,7 +19,7 @@ function ($scope, $http, $location, $window) {
 	$scope.number = 50;
 
 	$scope.getReleases = function() {
-// $scope.token = "BQDzuGHQpdogZYKoaCW1kkxtpMZx4E96Lb3RolSXiZ68rqW4Wx3D-hUJu4weeTPaQwz1GENuYWUqrywz2ahKwb4q45UqNQDkJ-J1pZNuRdEWlILVLgDY1ska08KUO-3CR7XreiOU--V8Ur_VMjC9fs_YzuFvNDQ";
+// $scope.token = "BQC-p1NUbGVVzCPLtYTivCURXpUbUqF6719oZJ79hPeGpfI7QuYWQue3HqNWd_az8d2dzCyz2Jeg5wJwWqoLOmf2bXWe1SjnfjtvdWA1esX9c2nn7mY33OkZTkqzVUjAWgxJTRylxuoO3ZZIqq3dqJnkv7hZbZc";
 		let limit = 20;
 		if ($scope.numberOfResults){
 			limit = $scope.numberOfResults;	
