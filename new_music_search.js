@@ -19,7 +19,7 @@ function ($scope, $http, $location, $window) {
 	$scope.number = 50;
 
 	$scope.getReleases = function() {
-// $scope.token = "BQC-p1NUbGVVzCPLtYTivCURXpUbUqF6719oZJ79hPeGpfI7QuYWQue3HqNWd_az8d2dzCyz2Jeg5wJwWqoLOmf2bXWe1SjnfjtvdWA1esX9c2nn7mY33OkZTkqzVUjAWgxJTRylxuoO3ZZIqq3dqJnkv7hZbZc";
+// $scope.token = "BQCSEgV8b1fMv1lUaCt4xkabaWcFPM50uJUqw8Zd10DEUhg-JuMaqk5Pktv4zDxtkN83TaNadW9jzWDqiyqQoHvGGRTJrfS_69HiQ4NvgOwmjXvpFUHOEaX-3qQG1688nAVNz5u8D56BfbBod227kxp46_dFrpY";
 		let limit = 20;
 		if ($scope.numberOfResults){
 			limit = $scope.numberOfResults;	
@@ -38,6 +38,17 @@ function ($scope, $http, $location, $window) {
 			}
 			alert(response["error"]["message"]);
 		});;
+	}
+
+	$scope.formatArtists = function(artistArray) {
+		let artists = ""; 
+		
+		for (let i=0; i < artistArray.length; ++i){
+			artists += (i+1) == artistArray.length 
+				? artistArray[i].name : artistArray[i].name + ", ";
+		}
+		
+		return artists;
 	}
 	
 }]);

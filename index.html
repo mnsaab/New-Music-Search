@@ -2,9 +2,12 @@
 <html lang="en-US">
 
 <style>
-  #releaseInput {
-    width: 50px;
+  
+  .resultBody {
+    margin-bottom: 30px;
+    margin-top: 10px;
   }
+
 </style>
 
 <head>
@@ -35,48 +38,50 @@
 </head>
 
 <body ng-app="newMusicSearch">
-  <nav class="navbar navbar-default">
+
+  <nav class="navbar navbar-navbar-light" style="background-color: #e3f2fd;">
     <div class="container">
       <div class="navbar-header">
-        <h3>New Music Date Range Search</h3>
+        <h3>New Music Search</h3>
       </div>
     </div>
   </nav>
+
   <div class="container" ng-controller="newReleases" ng-init="checkAuthentication()">
-
-    <div class="searchbar">
       
-      <label for="releaseInput">
-        <h4>Enter the number of results you'd like to receive: </h4>
-      </label>
-      <div class="row">
-        <div class="col-sm-3">
-          <select id="releaseInput" ng-model="numberOfResults">
-            <option value="">---</option>
-            <option ng-repeat="i in [].constructor(number) track by $index" value="{{$index + 1}}">{{$index + 1}}</option>
-          </select>
+    <label for="releaseInput">
+      <h4>Enter the number of results you'd like to receive: </h4>
+    </label>
+    <div class="row">
+      <div class="input-group col-sm-2">
+        <div class="input-group-prepend">
+          <button type="button" class="btn btn-primary" ng-click="getReleases()" ng-init="total=0" ng-init="data">Search</button>
         </div>
+        <select class="custom-select" id="releaseInput" ng-model="numberOfResults">
+          <option value="">---</option>
+          <option ng-repeat="i in [].constructor(number) track by $index" value="{{$index + 1}}">{{$index + 1}}</option>
+        </select>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-sm-3">
-          <input type="submit" ng-click="getReleases()" ng-init="total=0" ng-init="data" value="Search">
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-md-6" ng-repeat="x in results.items">
-          
-          <div class="col-md-12">
-            <img ng-src="{{x.images[1].url}}" err-src="noimage.jpg" class="img-responsive">
-          </div>
+    <div class="row">
+      <div class="resultBody col-md-4" ng-repeat="x in results.items">
         
+        <h6 ng-init="artists = formatArtists(x.artists)" style="text-align: center;">
+          {{artists}}
+          <br>
+          {{x.name}}
+        </h6>
+        <div class="col-md-12">
+          <img ng-src="{{x.images[1].url}}" err-src="noimage.jpg" class="img-responsive img-rounded">
         </div>
+      
       </div>
-
     </div>
 
   </div>
+
 </body>
 
 </html>
