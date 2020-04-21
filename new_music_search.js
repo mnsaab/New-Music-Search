@@ -71,7 +71,7 @@ $scope.token = "BQD26iTpXCne1w9gBvt1zA6to94heJVkrmwrDRLPumCe5WvEBQO5oOH8fl1nmMmB
 				$scope.results.items[index].loading = "ng-hide";
 				$scope.results.items[index].artistAndTracks = "ng-show";
 				$scope.results.items[index].tracklist = response;
-				console.log($scope.results);
+				console.log(response);
 			})
 			.error(function (response) {
 				if (response["error"]["message"] == "The access token expired"){

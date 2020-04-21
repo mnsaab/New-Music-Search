@@ -12,6 +12,11 @@
     margin-top: 5px;
   }
 
+  #body {
+    background-color: black;
+    color: white;
+  }
+
 </style>
 
 <head>
@@ -41,9 +46,9 @@
   </title>
 </head>
 
-<body ng-app="newMusicSearch">
+<body id="body" ng-app="newMusicSearch">
 
-  <nav class="navbar navbar-navbar-light" style="background-color: #e3f2fd;">
+  <nav class="navbar navbar-navbar-light" style="background-color: #22c24c;">
     <div class="container">
       <div class="navbar-header">
         <h3>New Music Search</h3>
@@ -86,9 +91,14 @@
 
         <div class="col-md-12">
           <div class="collapse" id="tracklist{{$index}}">
-            <div class="card card-body">
+            <div class="card card-body" style="background-color: black; border-width: 5px; border-color: #22c24c;">
               <div class="d-flex justify-content-center {{x.loading}}" id="loading{{$index}}"><div class="spinner-grow text-success" role="status"></div></div>
-              <div class="{{x.artistAndTracks}}" id="artistAndTracks{{$index}}">hello good sir</div>
+              <div class="{{x.artistAndTracks}}" id="artistAndTracks{{$index}}">
+                <b>Tracklist:</b>
+                <div class="listOfTracks{{$parent.$index}}" ng-repeat="y in x.tracklist.tracks.items">
+                  <b>{{$index + 1}}.</b> <a href="{{y.external_urls['spotify']}}" target="_blank">{{y.name}}</a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
