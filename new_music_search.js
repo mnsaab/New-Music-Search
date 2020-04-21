@@ -12,14 +12,14 @@ function ($scope, $http, $location, $window) {
 			}
 		}
 		if (!$scope.token){
-			$window.location.href = 'https://accounts.spotify.com/en/authorize?client_id=89ce701ef13d43389301f57126506b0f&response_type=token&redirect_uri=https:%2F%2Fmnsaab.github.io%2FNew-Music-Search%2F';
+			// $window.location.href = 'https://accounts.spotify.com/en/authorize?client_id=89ce701ef13d43389301f57126506b0f&response_type=token&redirect_uri=https:%2F%2Fmnsaab.github.io%2FNew-Music-Search%2F';
 		}
 	};
 
 	$scope.number = 50;
 
 	$scope.getReleases = function() {
-// $scope.token = "BQCSEgV8b1fMv1lUaCt4xkabaWcFPM50uJUqw8Zd10DEUhg-JuMaqk5Pktv4zDxtkN83TaNadW9jzWDqiyqQoHvGGRTJrfS_69HiQ4NvgOwmjXvpFUHOEaX-3qQG1688nAVNz5u8D56BfbBod227kxp46_dFrpY";
+$scope.token = "BQCqogEFtgSogYdYoFQ3Swh7c2plcCBjz6gd3LX0B8D1NtCqHT0zrohngbRL_9Bej_gNoioNx6K-u3JX7XlGyN41PH2F6Bcg8M_HDrL7cRwJj117WFJ_jiOXMHNZOLjPGWAwPb3VM_zDrovpHWFnQHRiLRDumlw";
 		let limit = 20;
 		if ($scope.numberOfResults){
 			limit = $scope.numberOfResults;	
