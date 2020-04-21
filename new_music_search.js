@@ -19,18 +19,19 @@ function ($scope, $http, $location, $window) {
 	$scope.number = 50;
 
 	$scope.getReleases = function() {
-// $scope.token = "BQD26iTpXCne1w9gBvt1zA6to94heJVkrmwrDRLPumCe5WvEBQO5oOH8fl1nmMmB417w7N8Uy6IqrK5Ms3AzxKXbAxvIL_buC6CqMrXT5ewXSRNVTyJAgziUzxb8KG2KWXJOci9Ry-_QAexsYI0pUwCS4QRmd2k";
-		let limit = 20;
+		let paramters = '20';
 		if ($scope.numberOfResults){
-			limit = $scope.numberOfResults;	
+			paramters = $scope.numberOfResults;	
 		}
-		$http.get('https://api.spotify.com/v1/browse/new-releases?limit=' + limit, {
+		if ($scope.countryCode){
+			paramters += "&country=" + $scope.countryCode; 
+		}
+		$http.get('https://api.spotify.com/v1/browse/new-releases?limit=' + paramters, {
 			headers: {
 				"Authorization": 'Bearer ' + $scope.token
 			}
 		}).success(function(response){
 			$scope.results = response.albums;
-			console.log($scope.results);
 		})
 		.error(function (response) {
 			if (response["error"]["message"] == "The access token expired"){
@@ -56,7 +57,6 @@ function ($scope, $http, $location, $window) {
 	}
 
 	$scope.getAlbumInfo = function(index) {
-		// $scope.token = "BQD26iTpXCne1w9gBvt1zA6to94heJVkrmwrDRLPumCe5WvEBQO5oOH8fl1nmMmB417w7N8Uy6IqrK5Ms3AzxKXbAxvIL_buC6CqMrXT5ewXSRNVTyJAgziUzxb8KG2KWXJOci9Ry-_QAexsYI0pUwCS4QRmd2k";
 		if ($scope.results.items[index].tracklist){
 			return;	
 		}
@@ -71,7 +71,6 @@ function ($scope, $http, $location, $window) {
 				$scope.results.items[index].loading = "ng-hide";
 				$scope.results.items[index].artistAndTracks = "ng-show";
 				$scope.results.items[index].tracklist = response;
-				console.log(response);
 			})
 			.error(function (response) {
 				if (response["error"]["message"] == "The access token expired"){

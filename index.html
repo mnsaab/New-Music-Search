@@ -37,13 +37,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script src="new_music_search.js"></script>
-  <!-- Date Range Picker -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
-  </title>
 </head>
 
 <body id="body" ng-app="newMusicSearch">
@@ -59,17 +52,22 @@
   <div class="container" ng-controller="newReleases" ng-init="checkAuthentication()">
       
     <label for="releaseInput">
-      <h4>Enter the number of results you'd like to receive: </h4>
+      <h4>Additional Search Options:</h4>
+      <ul>
+        <li><h5>Choose the number of results you would like returned</h5></li>
+        <li><h5>Enter an ISO 3166-1 alpha-2 country code to view the releases in that market</h5></li>
+      </ul>
     </label>
     <div class="row">
-      <div class="input-group col-sm-2">
+      <div class="input-group col-sm-3">
         <div class="input-group-prepend">
           <button type="button" class="btn btn-success" ng-click="getReleases()" ng-init="total=0" ng-init="data">Search</button>
         </div>
         <select class="custom-select" id="releaseInput" ng-model="numberOfResults">
-          <option value="">---</option>
+          <option value="">#</option>
           <option ng-repeat="i in [].constructor(number) track by $index" value="{{$index + 1}}">{{$index + 1}}</option>
         </select>
+        <input type="text" class="form-control" ng-model="countryCode" placeholder="Country">
       </div>
     </div>
 
