@@ -8,6 +8,10 @@
     margin-top: 10px;
   }
 
+  .collapse {
+    margin-top: 5px;
+  }
+
 </style>
 
 <head>
@@ -55,7 +59,7 @@
     <div class="row">
       <div class="input-group col-sm-2">
         <div class="input-group-prepend">
-          <button type="button" class="btn btn-primary" ng-click="getReleases()" ng-init="total=0" ng-init="data">Search</button>
+          <button type="button" class="btn btn-success" ng-click="getReleases()" ng-init="total=0" ng-init="data">Search</button>
         </div>
         <select class="custom-select" id="releaseInput" ng-model="numberOfResults">
           <option value="">---</option>
@@ -66,17 +70,30 @@
 
 
     <div class="row">
-      <div class="resultBody col-md-4" ng-repeat="x in results.items">
+      <div class="resultBody" ng-repeat="x in results.items">
         
-        <h6 ng-init="artists = formatArtists(x.artists)" style="text-align: center;">
-          {{artists}}
-          <br>
-          {{x.name}}
-        </h6>
+        
         <div class="col-md-12">
-          <img ng-src="{{x.images[1].url}}" err-src="noimage.jpg" class="img-responsive img-rounded">
+          <h6 ng-init="artists = formatArtists(x.artists)" style="text-align: center;">
+            {{artists}}
+            <br>
+            {{x.name}}
+          </h6>
+          <button type="button" data-toggle="collapse" href="#tracklist{{$index}}" class="btn btn-success">
+            <img ng-src="{{x.images[1].url}}" err-src="noimage.jpg" class="img-responsive img-rounded">
+          </button>
         </div>
-      
+
+        <div class="col-md-12">
+          <div class="collapse" id="tracklist{{$index}}">
+            <div class="card card-body">
+              This is a track list <br>
+              1 <br>
+              2
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
