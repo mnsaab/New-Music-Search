@@ -12,14 +12,14 @@ function ($scope, $http, $location, $window) {
 			}
 		}
 		if (!$scope.token){
-			// $window.location.href = 'https://accounts.spotify.com/en/authorize?client_id=89ce701ef13d43389301f57126506b0f&response_type=token&redirect_uri=https:%2F%2Fmnsaab.github.io%2FNew-Music-Search%2F';
+			$window.location.href = 'https://accounts.spotify.com/en/authorize?client_id=89ce701ef13d43389301f57126506b0f&response_type=token&redirect_uri=https:%2F%2Fmnsaab.github.io%2FNew-Music-Search%2F';
 		}
 	};
 
 	$scope.number = 50;
 
 	$scope.getReleases = function() {
-$scope.token = "BQD26iTpXCne1w9gBvt1zA6to94heJVkrmwrDRLPumCe5WvEBQO5oOH8fl1nmMmB417w7N8Uy6IqrK5Ms3AzxKXbAxvIL_buC6CqMrXT5ewXSRNVTyJAgziUzxb8KG2KWXJOci9Ry-_QAexsYI0pUwCS4QRmd2k";
+// $scope.token = "BQD26iTpXCne1w9gBvt1zA6to94heJVkrmwrDRLPumCe5WvEBQO5oOH8fl1nmMmB417w7N8Uy6IqrK5Ms3AzxKXbAxvIL_buC6CqMrXT5ewXSRNVTyJAgziUzxb8KG2KWXJOci9Ry-_QAexsYI0pUwCS4QRmd2k";
 		let limit = 20;
 		if ($scope.numberOfResults){
 			limit = $scope.numberOfResults;	
@@ -56,7 +56,7 @@ $scope.token = "BQD26iTpXCne1w9gBvt1zA6to94heJVkrmwrDRLPumCe5WvEBQO5oOH8fl1nmMmB
 	}
 
 	$scope.getAlbumInfo = function(index) {
-		$scope.token = "BQD26iTpXCne1w9gBvt1zA6to94heJVkrmwrDRLPumCe5WvEBQO5oOH8fl1nmMmB417w7N8Uy6IqrK5Ms3AzxKXbAxvIL_buC6CqMrXT5ewXSRNVTyJAgziUzxb8KG2KWXJOci9Ry-_QAexsYI0pUwCS4QRmd2k";
+		// $scope.token = "BQD26iTpXCne1w9gBvt1zA6to94heJVkrmwrDRLPumCe5WvEBQO5oOH8fl1nmMmB417w7N8Uy6IqrK5Ms3AzxKXbAxvIL_buC6CqMrXT5ewXSRNVTyJAgziUzxb8KG2KWXJOci9Ry-_QAexsYI0pUwCS4QRmd2k";
 		if ($scope.results.items[index].tracklist){
 			return;	
 		}
