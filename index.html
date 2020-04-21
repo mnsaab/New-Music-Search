@@ -8,6 +8,15 @@
     margin-top: 10px;
   }
 
+  .collapse {
+    margin-top: 5px;
+  }
+
+  #body {
+    background-color: black;
+    color: white;
+  }
+
 </style>
 
 <head>
@@ -37,9 +46,9 @@
   </title>
 </head>
 
-<body ng-app="newMusicSearch">
+<body id="body" ng-app="newMusicSearch">
 
-  <nav class="navbar navbar-navbar-light" style="background-color: #e3f2fd;">
+  <nav class="navbar navbar-navbar-light" style="background-color: #22c24c;">
     <div class="container">
       <div class="navbar-header">
         <h3>New Music Search</h3>
@@ -55,7 +64,7 @@
     <div class="row">
       <div class="input-group col-sm-2">
         <div class="input-group-prepend">
-          <button type="button" class="btn btn-primary" ng-click="getReleases()" ng-init="total=0" ng-init="data">Search</button>
+          <button type="button" class="btn btn-success" ng-click="getReleases()" ng-init="total=0" ng-init="data">Search</button>
         </div>
         <select class="custom-select" id="releaseInput" ng-model="numberOfResults">
           <option value="">---</option>
@@ -66,17 +75,34 @@
 
 
     <div class="row">
-      <div class="resultBody col-md-4" ng-repeat="x in results.items">
+      <div class="resultBody" ng-repeat="x in results.items" ng-init=hideTracks($index)>
         
-        <h6 ng-init="artists = formatArtists(x.artists)" style="text-align: center;">
-          {{artists}}
-          <br>
-          {{x.name}}
-        </h6>
+        
         <div class="col-md-12">
-          <img ng-src="{{x.images[1].url}}" err-src="noimage.jpg" class="img-responsive img-rounded">
+          <h6 ng-init="artists = formatArtists(x.artists)" style="text-align: center;">
+            {{artists}}
+            <br>
+            {{x.name}}
+          </h6>
+          <button type="button" class="btn btn-success" data-toggle="collapse" href="#tracklist{{$index}}" ng-click="getAlbumInfo($index)">
+            <img ng-src="{{x.images[1].url}}" err-src="noimage.jpg" class="img-responsive img-rounded">
+          </button>
         </div>
-      
+
+        <div class="col-md-12">
+          <div class="collapse" id="tracklist{{$index}}">
+            <div class="card card-body" style="background-color: black; border-width: 5px; border-color: #22c24c;">
+              <div class="d-flex justify-content-center {{x.loading}}" id="loading{{$index}}"><div class="spinner-grow text-success" role="status"></div></div>
+              <div class="{{x.artistAndTracks}}" id="artistAndTracks{{$index}}">
+                <b>Tracklist:</b>
+                <div class="listOfTracks{{$parent.$index}}" ng-repeat="y in x.tracklist.tracks.items">
+                  <b>{{$index + 1}}.</b> <a href="{{y.external_urls['spotify']}}" target="_blank">{{y.name}}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
