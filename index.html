@@ -70,7 +70,7 @@
 
 
     <div class="row">
-      <div class="resultBody" ng-repeat="x in results.items">
+      <div class="resultBody" ng-repeat="x in results.items" ng-init=hideTracks($index)>
         
         
         <div class="col-md-12">
@@ -79,7 +79,7 @@
             <br>
             {{x.name}}
           </h6>
-          <button type="button" data-toggle="collapse" href="#tracklist{{$index}}" class="btn btn-success">
+          <button type="button" class="btn btn-success" data-toggle="collapse" href="#tracklist{{$index}}" ng-click="getAlbumInfo($index)">
             <img ng-src="{{x.images[1].url}}" err-src="noimage.jpg" class="img-responsive img-rounded">
           </button>
         </div>
@@ -87,9 +87,8 @@
         <div class="col-md-12">
           <div class="collapse" id="tracklist{{$index}}">
             <div class="card card-body">
-              This is a track list <br>
-              1 <br>
-              2
+              <div class="d-flex justify-content-center {{x.loading}}" id="loading{{$index}}"><div class="spinner-grow text-success" role="status"></div></div>
+              <div class="{{x.artistAndTracks}}" id="artistAndTracks{{$index}}">hello good sir</div>
             </div>
           </div>
         </div>

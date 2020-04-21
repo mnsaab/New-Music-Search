@@ -19,7 +19,7 @@ function ($scope, $http, $location, $window) {
 	$scope.number = 50;
 
 	$scope.getReleases = function() {
-$scope.token = "BQCqogEFtgSogYdYoFQ3Swh7c2plcCBjz6gd3LX0B8D1NtCqHT0zrohngbRL_9Bej_gNoioNx6K-u3JX7XlGyN41PH2F6Bcg8M_HDrL7cRwJj117WFJ_jiOXMHNZOLjPGWAwPb3VM_zDrovpHWFnQHRiLRDumlw";
+$scope.token = "BQD26iTpXCne1w9gBvt1zA6to94heJVkrmwrDRLPumCe5WvEBQO5oOH8fl1nmMmB417w7N8Uy6IqrK5Ms3AzxKXbAxvIL_buC6CqMrXT5ewXSRNVTyJAgziUzxb8KG2KWXJOci9Ry-_QAexsYI0pUwCS4QRmd2k";
 		let limit = 20;
 		if ($scope.numberOfResults){
 			limit = $scope.numberOfResults;	
@@ -49,6 +49,37 @@ $scope.token = "BQCqogEFtgSogYdYoFQ3Swh7c2plcCBjz6gd3LX0B8D1NtCqHT0zrohngbRL_9Be
 		}
 		
 		return artists;
+	}
+	
+	$scope.hideTracks = function(index) {
+		$scope.results.items[index].artistAndTracks = "ng-hide";
+	}
+
+	$scope.getAlbumInfo = function(index) {
+		$scope.token = "BQD26iTpXCne1w9gBvt1zA6to94heJVkrmwrDRLPumCe5WvEBQO5oOH8fl1nmMmB417w7N8Uy6IqrK5Ms3AzxKXbAxvIL_buC6CqMrXT5ewXSRNVTyJAgziUzxb8KG2KWXJOci9Ry-_QAexsYI0pUwCS4QRmd2k";
+		if ($scope.results.items[index].tracklist){
+			return;	
+		}
+		else {
+			let spotifykeyList = $scope.results.items[index].uri.split(':');
+			let spotifykey = spotifykeyList[spotifykeyList.length - 1];
+			$http.get('https://api.spotify.com/v1/albums/' + spotifykey, {
+				headers: {
+					"Authorization": 'Bearer ' + $scope.token
+				}
+			}).success(function(response){
+				$scope.results.items[index].loading = "ng-hide";
+				$scope.results.items[index].artistAndTracks = "ng-show";
+				$scope.results.items[index].tracklist = response;
+				console.log($scope.results);
+			})
+			.error(function (response) {
+				if (response["error"]["message"] == "The access token expired"){
+					$window.location.href = 'https://accounts.spotify.com/en/authorize?client_id=89ce701ef13d43389301f57126506b0f&response_type=token&redirect_uri=https:%2F%2Fmnsaab.github.io%2FNew-Music-Search%2F';
+				}
+				alert(response["error"]["message"]);
+			});;
+		}
 	}
 	
 }]);
